@@ -1,10 +1,16 @@
 from	django.db	import	models
 from	django.contrib.auth.models	import	User
+from django.utils import timezone
+from django.conf import settings
+from .fields import OrderField
 
 #Imports for diverse content like images,files,videos,text
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 #import end
+
+# imports for ordering module and content objects
+
 
 class	Subject(models.Model):
     title	=	models.CharField(max_length=200)
@@ -35,9 +41,13 @@ class	Module(models.Model):
     course	=	models.ForeignKey(Course, related_name='modules', on_delete=models.CASCADE)
     title	=	models.CharField(max_length=200)
     description	=	models.TextField(blank=True)
-    
-    def	__str__(self):
-        return	self.title
+    order = OrderField(blank =True, for_fields=['course'])
+
+    class Meta:
+        ordering =['-order']
+
+    def __str__(self):
+        return '{}. {}'.format(self.order , self.title)
 
 #model for diverse content START
 
@@ -46,6 +56,10 @@ class Content(models.Model):
     content_type = models.ForeignKey(ContentType , on_delete =models.CASCADE ,limit_choices_to={'model__in' : ('text', 'video' , 'image' , 'file')})
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type' , 'object_id')
+    order = OrderField(blank =True, for_fields=['module'])
+
+    class Meta:
+        ordering =['-order']
 
 #model-inheritance
 
@@ -72,3 +86,7 @@ class Image(ItemBase):
 
 class Video(ItemBase):
     url = models.URLField()
+
+
+
+    
