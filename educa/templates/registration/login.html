@@ -3,24 +3,26 @@
 
  {% block content %}
  
- 
- <h1> LOGIN </h1>
- <div	class="module">
-	{%	if	form.errors	%}
-    <p>Your	username	and	password	didn't	match.	Please	try	again.</p>
-	{%	else	%}
-    <p>Please,	use	the	following	form	to	log-in:</p>
-	{%	endif	%}
-	    <div	class="login-form">
-	        <form	action="{%	url	'login'	%}"	method="post">
-	            {{	form.as_p	}}
-	            {%	csrf_token	%}
-	            <input	type="hidden"	name="next"	value="{{	next	}}"	/>
-	            <p><input	type="submit"	value="Log-in"></p>
-	        </form>
-	    </div>
+
+<div style="background-color: orange; width:500px; height:300px; position: absolute; top:180px; left:410px;" class="container">
+ 	<h1 style="text-align: center"> LOGIN </h1>
+ 	<div	class="module" style="text-align:center;">
+		{%	if	form.errors	%}
+    	<p>Invalid Crediantials</p>
+		{%	else	%}
+    	<p>Please,	use	the	following	form	to	log-in:</p>
+		{%	endif	%}
+	    	<div	class="login-form">
+	        	<form	action="{%	url	'login'	%}"	method="post">
+	            	{{	form.as_p	}}
+	            	{%	csrf_token	%}
+	            	<input	type="hidden"	name="next"	value="{{	next	}}"	/>
+	            	<button class="btn btn-danger"	type="submit">Log in</button>
+	        	</form>
+	    	</div>
+	</div>
 </div>
- 
+
  
  
  {% endblock content %}
