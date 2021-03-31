@@ -28,8 +28,8 @@ class OwnerEditMixin(object):
 
 class OwnerCourseMixin(OwnerMixin):
     model = Course
-    #fields = ['subject' , 'title' , 'slug' , 'overview']
-    #success_url =reverse_lazy('manage_course_list')
+    fields = ['subject' , 'title' , 'slug' , 'overview']
+    success_url =reverse_lazy('manage_course_list')
 
 class OwnerCourseEditMixin(OwnerCourseMixin ,OwnerEditMixin):
     fields = ['subject' , 'title' , 'slug' , 'overview']

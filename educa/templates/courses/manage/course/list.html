@@ -3,13 +3,13 @@
 {% block title %} My Courses{% endblock %}
 
 {% block content %}
-<h1> My Courses </h1>
-<div class="module">
+<h1 style="text-align: center; margin-top: 10px;"> My Courses </h1>
+<div class="module container " style="background-color: orange;">
     {% for course in object_list %}
-        <div class="course-info">
-            <h3>{{course.title}} </h3>
-            <p>
-                <a href= "{% url "course_edit" course.id %}"> Edit </a>
+        <div class="course-info" style="margin-top:10px;">
+            <h3 style="text-align: center; margin-top: 15px;">{{course.title}} </h3>
+            <p style="text-align: center;">
+                <a style="margin-right: 20px;"href= "{% url "course_edit" course.id %}"> Edit </a>
                 <a href= "{% url "course_delete" course.id %}"> Delete </a>
             </p>
         </div>
@@ -17,8 +17,8 @@
         <p> You haven't created any courses yet </p>
         {% endfor %}
 
-        <p>
+        <button>
             <a href="{% url "course_create" %}" class="button"> Create New Course </a>
-        </p>
+        </button>
 </div>
 {% endblock content %}

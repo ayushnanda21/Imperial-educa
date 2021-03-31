@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if object %}
+    Edit Course "{{object.title }}"
+    {% else %}
+        Create a new Course
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+
+    <h1 style="text-align: center; margin-top: 10px;">
+    
+	{%	if	object	%}
+	Edit	course	"{{	object.title	}}"
+	{%	else	%}
+	Create	a	new	course
+	{%	endif	%}
+	</h1>
+
+	<div class=" module container" style="background-color:orange; text-align: center; width:700px; height: 460px;"> 
+	    <h2 style="text-align: center;">Course	info</h2>
+	    <form style="font-size: 15px;"	action="."	method="post">
+	    {{	form.as_p	}}
+	    {%	csrf_token	%}
+	    <button	type="submit" class="btn btn-danger" value="Save course">Save Course</button>
+	    </form>
+	</div>
+
+
+
+{% endblock content %}
