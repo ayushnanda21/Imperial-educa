@@ -1,25 +1,27 @@
-{%	extends	"base.html"	%}
-{%	block	title	%}
-		{%	if	object	%}
-				Edit	content	"{{	object.title	}}"
-		{%	else	%}
-				Add	a	new	content
-		{%	endif	%}
-{%	endblock	%}
-{%	block	content	%}
-		<h1 style="text-align:center; margin-top:10px;">
-				{%	if	object	%}
-						Edit	content	"{{	object.title	}}"
-				{%	else	%}
-						Add	a	new	content
-				{%	endif	%}
-		</h1>
-		<div	class="module container" style="background-color:orange; height:300px; width:600px;">
-				<h2 style="text-align:center; margin-top:30px; text-decoration:underline;">"Course	info"</h2>
-				<form style="text-align:center; margin-top:30px;" action=""	method="post"	enctype="multipart/form-data">
-						{{	form.as_p	}}
-						{%	csrf_token	%}
-						<p style="text-align:center; margin-top:40px;"><input	type="submit"	value="Save	content"></p>
-				</form>
-		</div>
-{%	endblock	%}
+{% extends "base.html" %}
+
+{% block title %}
+  {% if object %}
+    Edit content "{{ object.title }}"
+  {% else %}
+    Add a new content
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>
+    {% if object %}
+      Edit content "{{ object.title }}"
+    {% else %}
+      Add a new content
+    {% endif %}
+  </h1>
+  <div class="module">
+    <h2>Course info</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <p><input type="submit" value="Save content"></p>
+    </form>
+  </div>
+{% endblock %}
