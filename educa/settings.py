@@ -27,12 +27,13 @@ SECRET_KEY = 'v_m_gb!$q3fp)2fawsu3jzzyp)0!zhh3uej_kp(qmfbj7d8&_q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'memcache_status',
     'courses',
     'students',
@@ -147,4 +148,13 @@ CACHES = {
 'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
 'LOCATION': '127.0.0.1:11211',
             }
+}
+
+#Rest API using Django-rest-framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }
